@@ -1,7 +1,6 @@
 import math
 from datetime import datetime
-from app.customer import Customer
-from app.shop import Shop
+from typing import Any
 
 
 def calculate_distance(location1: list, location2: list) -> float:
@@ -22,7 +21,7 @@ def calculate_product_cost(product_cart: dict, shop_products: dict) -> float:
     return total_cost
 
 
-def purchase_and_print_receipt(customer: Customer, shop: Shop) -> None:
+def purchase_and_print_receipt(customer: Any, shop: Any) -> None:
     locked_datetime = datetime(2021, 4, 1, 12, 33, 41)
     formatted_datetime = locked_datetime.strftime("%m/%d/%Y %H:%M:%S")
     print(f"\nDate: {formatted_datetime}")
