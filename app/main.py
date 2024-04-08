@@ -1,7 +1,6 @@
 import json
 from app.customer import Customer
 from app.shop import Shop
-from app.additional_functions import purchase_and_print_receipt
 
 
 def shop_trip() -> None:
@@ -19,7 +18,7 @@ def shop_trip() -> None:
 
         trip_costs = {}
         for shop in shops:
-            distance_to_shop = customer.calculate_distance_to_shop(shop)
+            distance_to_shop = shop.calculate_distance_to_shop(customer)
             fuel_cost_to_shop = customer.calculate_fuel_cost_to_shop(
                 distance_to_shop, fuel_price)
 
@@ -41,7 +40,7 @@ def shop_trip() -> None:
             print(f"{customer.name} rides to {cheapest_shop_name}")
             customer.location = cheapest_shop.location
 
-            purchase_and_print_receipt(customer, cheapest_shop)
+            cheapest_shop.purchase_and_print_receipt(customer)
             print(f"\n{customer.name} rides home")
             customer.location = customer.location
 

@@ -1,6 +1,4 @@
 from __future__ import annotations
-from typing import Any
-from app.additional_functions import calculate_distance
 
 
 class Customer:
@@ -26,9 +24,6 @@ class Customer:
             config_data["money"],
             config_data["car"]
         )
-
-    def calculate_distance_to_shop(self, shop: Any) -> float:
-        return calculate_distance(self.location, shop.location)
 
     def calculate_fuel_cost_to_shop(self,
                                     distance_to_shop: float,
