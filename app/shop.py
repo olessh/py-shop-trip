@@ -1,5 +1,6 @@
 from __future__ import annotations
-from datetime import datetime
+from unittest.mock import patch
+import datetime
 from app.additional_functions import calculate_distance, calculate_product_cost
 from app.customer import Customer
 
@@ -25,8 +26,11 @@ class Shop:
         return calculate_product_cost(product_cart, self.products)
 
     def purchase_and_print_receipt(self, customer: Customer) -> None:
-        locked_datetime = datetime(2021, 4, 1, 12, 33, 41)
-        formatted_datetime = locked_datetime.strftime("%m/%d/%Y %H:%M:%S")
+        with (patch("datetime.datetime") as mock_datetime):
+            mock_datetime.now.return_value = (
+                datetime.datetime(2021, 4, 1, 12, 33, 41))
+        formatted_datetime = (
+            datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
         print(f"\nDate: {formatted_datetime}")
         print(f"Thanks, {customer.name}, for your purchase!"
               f"\nYou have bought:")

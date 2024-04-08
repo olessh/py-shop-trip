@@ -12,8 +12,6 @@ def calculate_distance(location1: list, location2: list) -> float:
 
 
 def calculate_product_cost(product_cart: dict, shop_products: dict) -> float:
-    total_cost = 0
-    for product, quantity in product_cart.items():
-        if product in shop_products:
-            total_cost += quantity * shop_products[product]
-    return total_cost
+    return sum(quantity * shop_products[product]
+               for product, quantity in product_cart.items()
+               if product in shop_products)
